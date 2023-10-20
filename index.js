@@ -1,3 +1,5 @@
+// DATA
+
 var finances = [
   ['Jan-2010', 867884],
   ['Feb-2010', 984655],
@@ -87,3 +89,77 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
+
+/*  PSEUDO CODE
+1. Variable totalMonths to store number of months
+    - array.length -1
+2. Variable totalNet to store total amount of profit/losses over the entire period
+    - access index 1 of each sub-array
+    - sum all 
+3. Variable averageChange to store average change over the entire period
+    - totalNet / totalMonths
+4. var greatestIncrease
+    - scan all values from the latest
+    - for each array item subtract item [i - 1]
+    - store the values in the array increases
+    - find the biggest value
+5. var greatestDecrease
+    - scan all values from the latest
+    - for each array item subtract item [i - 1]
+    - store the values in the array increases
+    - find the smallest value
+
+*/
+
+
+// Total Months
+var totalMonths = finances.length;
+
+console.log(totalMonths);
+
+// Total amount of Profil/Losses over the entire period
+var totalNet = 0;
+
+for (i=0; i<totalMonths; i++) {
+    totalNet += finances[i][1];
+}
+
+console.log(totalNet);
+
+// Storing changes from month to month
+
+var averageChange;
+var currentChange;
+var changes = [];
+
+for (i=totalMonths-1; i>=1; i--) {
+    currentChange = finances[i][1] - finances[i-1][1];
+    changes.push(currentChange);
+}
+
+console.log(changes);
+
+// Average Change
+var sumChanges = 0;
+
+for(i=changes.length-1; i >= 0; i--) {
+    sumChanges += changes[i];
+}
+
+console.log ("Sum change: " + sumChanges);
+
+averageChange = sumChanges / (totalMonths - 1);
+
+console.log(averageChange);
+
+
+// Greatest Increase
+
+var greatestIncrease = Math.max(...changes)
+console.log(greatestIncrease);
+
+
+// Greatest Decrease
+
+var greatestDecrease = Math.min(...changes)
+console.log(greatestDecrease);
