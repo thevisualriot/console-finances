@@ -111,79 +111,80 @@ var finances = [
 
 */
 
+
+/* TITLE */
 console.log("Financial Analysis");
 console.log("----------------");
 
-/* TOTAL AMOUNT OF MONTHS */
-var totalMonths = finances.length;      // store total months
 
-console.log("Total Months: " + totalMonths);               // print total month
+/* TOTAL AMOUNT OF MONTHS */
+var totalMonths = finances.length;         
+
+console.log("Total Months: " + totalMonths);      
 
 
 /* TOTAL PROFIT / LOSSES */
-var totalNet = 0;                       // store total amount of profit/losses
+var totalNet = 0; 
 
 for (i=0; i<totalMonths; i++) {   
-    totalNet += finances[i][1];         // sum values from the array
+    totalNet += finances[i][1];
 }
 
-console.log("Total: $" + totalNet);                  // print total amount of profit/losses
+console.log("Total: $" + totalNet);
 
 
 /* STORE INFO ABOUT CHANGES FROM MONTH TO MONTH */
-var currentChange;                      // variable for temporary storing difference of single months
-var changes = [];                       // empty array to store changes of all months
+var currentChange;  // temporary storage for individual changes
+var changes = [];  // to store all monthly changes
 
-for (i=totalMonths-1; i>=1; i--) {      // scan array from the last index to the first
-    currentChange = finances[i][1] - finances[i-1][1];  // difference between every two months
-    changes.push(currentChange);       // add monthly change to array 'changes'
-    finances[i].push(currentChange);
+for (i=totalMonths-1; i>=1; i--) { 
+    currentChange = finances[i][1] - finances[i-1][1];  
+    changes.push(currentChange);        // add to 'changes' array
+    finances[i].push(currentChange);    // add as a 3rd column to 'finances' array
     // console.log("CHECK: "+ finances[i]);
 }
 
-/* console.log(changes);              --- VERIFICATION ONLY */
+// VERIFICATION ONLY
+// console.log(changes);    
 
 
-/* AVERAGE */
-var averageChange;                  // var to store average change
-var sumChanges = 0;                 // initial value of sum of changes
+/* AVERAGE CHANGE */
+var sumChanges = 0; // initial value for variable storing sum of changes
 
-for(i=changes.length-1; i >= 0; i--) {      // scan from the end of the array
-    sumChanges += changes[i];               // sum all changes
+for(i=changes.length-1; i >= 0; i--) {     
+    sumChanges += changes[i];          
 }
 
-/* console.log ("Sum change: " + sumChanges);   --- VERIFICATION ONLY */
+// VERIFICATION ONLY
+// console.log ("change sum: " + sumChanges); 
 
-averageChange = (sumChanges / (totalMonths - 1)).toFixed(2);     // count average of changes
+var averageChange = (sumChanges / (totalMonths - 1)).toFixed(2);  // count average and restrict to 2 decimal points
 
 console.log("Average Change: " + averageChange);
 
 
-/* MERGE CHANGES WITH FINANCES */
+/* GREATEST INCREASE */
 
-
-// Greatest Increase
-
-var greatestIncrease = Math.max(...changes);
+var greatestIncrease = Math.max(...changes);  // find the biggest number in changes array
 var greatestIncreaseMonth;
 
 for(var i = 0; i < finances.length; i++){
-    if (finances[i][2] === greatestIncrease){
-        greatestIncreaseMonth = finances[i][0];
+    if (finances[i][2] === greatestIncrease){   // find the greatest increase value in finances array
+        greatestIncreaseMonth = finances[i][0]; // store month name in the greatestIncreaseMonth variable
     }
 }
 
 console.log("Greatest Increase in Profits/Losses: " + greatestIncreaseMonth + " ($" + greatestIncrease +")");
 
 
-// Greatest Decrease
+/* GREATEST DECREASE */
 
-var greatestDecrease = Math.min(...changes);
+var greatestDecrease = Math.min(...changes);   // find the lowest number in changes array
 var greatestDecreaseMonth;
 
 for(var i = 0; i < finances.length; i++){
-    if (finances[i][2] === greatestDecrease){
-        greatestDecreaseMonth = finances[i][0];
+    if (finances[i][2] === greatestDecrease){   // find the greatest decrease value in finances array
+        greatestDecreaseMonth = finances[i][0];  // store month name in the greatestDecreaseMonth variable
     }
 }
 
