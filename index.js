@@ -154,7 +154,7 @@ for(i=changes.length-1; i >= 0; i--) {      // scan from the end of the array
 
 /* console.log ("Sum change: " + sumChanges);   --- VERIFICATION ONLY */
 
-averageChange = sumChanges / (totalMonths - 1);     // count average of changes
+averageChange = (sumChanges / (totalMonths - 1)).toFixed(2);     // count average of changes
 
 console.log("Average Change: " + averageChange);
 
