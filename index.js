@@ -126,7 +126,7 @@ console.log("Total Months: " + totalMonths);
 /* TOTAL PROFIT / LOSSES */
 var totalNet = 0; 
 
-for (i=0; i<totalMonths; i++) {   
+for (var i=0; i<totalMonths; i++) {   
     totalNet += finances[i][1];
 }
 
@@ -137,26 +137,19 @@ console.log("Total: $" + totalNet);
 var currentChange;  // temporary storage for individual changes
 var changes = [];  // to store all monthly changes
 
-for (i=totalMonths-1; i>=1; i--) { 
+for (var i=totalMonths-1; i>=1; i--) { 
     currentChange = finances[i][1] - finances[i-1][1];  
     changes.push(currentChange);        // add to 'changes' array
     finances[i].push(currentChange);    // add as a 3rd column to 'finances' array
-    // console.log("CHECK: "+ finances[i]);
 }
-
-// VERIFICATION ONLY
-// console.log(changes);    
 
 
 /* AVERAGE CHANGE */
 var sumChanges = 0; // initial value for variable storing sum of changes
 
-for(i=changes.length-1; i >= 0; i--) {     
+for(var i=changes.length-1; i >= 0; i--) {     
     sumChanges += changes[i];          
 }
-
-// VERIFICATION ONLY
-// console.log ("change sum: " + sumChanges); 
 
 var averageChange = (sumChanges / (totalMonths - 1)).toFixed(2);  // count average and restrict to 2 decimal points
 
