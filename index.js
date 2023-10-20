@@ -111,55 +111,80 @@ var finances = [
 
 */
 
+console.log("Financial Analysis");
+console.log("----------------");
 
-// Total Months
-var totalMonths = finances.length;
+/* TOTAL AMOUNT OF MONTHS */
+var totalMonths = finances.length;      // store total months
 
-console.log(totalMonths);
+console.log("Total Months: " + totalMonths);               // print total month
 
-// Total amount of Profil/Losses over the entire period
-var totalNet = 0;
 
-for (i=0; i<totalMonths; i++) {
-    totalNet += finances[i][1];
+/* TOTAL PROFIT / LOSSES */
+var totalNet = 0;                       // store total amount of profit/losses
+
+for (i=0; i<totalMonths; i++) {   
+    totalNet += finances[i][1];         // sum values from the array
 }
 
-console.log(totalNet);
+console.log("Total: $" + totalNet);                  // print total amount of profit/losses
 
-// Storing changes from month to month
 
-var averageChange;
-var currentChange;
-var changes = [];
+/* STORE INFO ABOUT CHANGES FROM MONTH TO MONTH */
+var currentChange;                      // variable for temporary storing difference of single months
+var changes = [];                       // empty array to store changes of all months
 
-for (i=totalMonths-1; i>=1; i--) {
-    currentChange = finances[i][1] - finances[i-1][1];
-    changes.push(currentChange);
+for (i=totalMonths-1; i>=1; i--) {      // scan array from the last index to the first
+    currentChange = finances[i][1] - finances[i-1][1];  // difference between every two months
+    changes.push(currentChange);       // add monthly change to array 'changes'
+    finances[i].push(currentChange);
+    // console.log("CHECK: "+ finances[i]);
 }
 
-console.log(changes);
+/* console.log(changes);              --- VERIFICATION ONLY */
 
-// Average Change
-var sumChanges = 0;
 
-for(i=changes.length-1; i >= 0; i--) {
-    sumChanges += changes[i];
+/* AVERAGE */
+var averageChange;                  // var to store average change
+var sumChanges = 0;                 // initial value of sum of changes
+
+for(i=changes.length-1; i >= 0; i--) {      // scan from the end of the array
+    sumChanges += changes[i];               // sum all changes
 }
 
-console.log ("Sum change: " + sumChanges);
+/* console.log ("Sum change: " + sumChanges);   --- VERIFICATION ONLY */
 
-averageChange = sumChanges / (totalMonths - 1);
+averageChange = sumChanges / (totalMonths - 1);     // count average of changes
 
-console.log(averageChange);
+console.log("Average Change: " + averageChange);
+
+
+/* MERGE CHANGES WITH FINANCES */
 
 
 // Greatest Increase
 
-var greatestIncrease = Math.max(...changes)
-console.log(greatestIncrease);
+var greatestIncrease = Math.max(...changes);
+var greatestIncreaseMonth;
+
+for(var i = 0; i < finances.length; i++){
+    if (finances[i][2] === greatestIncrease){
+        greatestIncreaseMonth = finances[i][0];
+    }
+}
+
+console.log("Greatest Increase in Profits/Losses: " + greatestIncreaseMonth + " | " + greatestIncrease);
 
 
 // Greatest Decrease
 
-var greatestDecrease = Math.min(...changes)
-console.log(greatestDecrease);
+var greatestDecrease = Math.min(...changes);
+var greatestDecreaseMonth;
+
+for(var i = 0; i < finances.length; i++){
+    if (finances[i][2] === greatestDecrease){
+        greatestDecreaseMonth = finances[i][0];
+    }
+}
+
+console.log("Greatest Decrease in Profits/Losses: " + greatestDecreaseMonth + " | " + greatestDecrease);
