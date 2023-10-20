@@ -92,23 +92,24 @@ var finances = [
 
 /*  PSEUDO CODE
 1. Variable totalMonths to store number of months
-    - array.length -1
+    - array.length
 2. Variable totalNet to store total amount of profit/losses over the entire period
-    - access index 1 of each sub-array
-    - sum all 
+    - access index 1 of each sub-array and sum up
 3. Variable averageChange to store average change over the entire period
-    - totalNet / totalMonths
+    - subtract one month from another (2-1, 3-2, 4-3 and so on) (financial values)
+    - store the changes from subtraction in an array
+    - sum up values from the new array
+    - divide by total number of months (-1)
 4. var greatestIncrease
     - scan all values from the latest
     - for each array item subtract item [i - 1]
     - store the values in the array increases
+    - add those values to the finances array
     - find the biggest value
+    - find this biggest value in the updated finances array to retrieve info about month
 5. var greatestDecrease
-    - scan all values from the latest
-    - for each array item subtract item [i - 1]
-    - store the values in the array increases
-    - find the smallest value
-
+    - find the smallest value from the array (the same as increases)
+    - find this smallest value in the updated finances array to retrieve info about month 
 */
 
 
