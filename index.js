@@ -173,7 +173,7 @@ for(var i = 0; i < finances.length; i++){
     }
 }
 
-console.log("Greatest Increase in Profits/Losses: " + greatestIncreaseMonth + " | " + greatestIncrease);
+console.log("Greatest Increase in Profits/Losses: " + greatestIncreaseMonth + " ($" + greatestIncrease +")");
 
 
 // Greatest Decrease
@@ -187,4 +187,4 @@ for(var i = 0; i < finances.length; i++){
     }
 }
 
-console.log("Greatest Decrease in Profits/Losses: " + greatestDecreaseMonth + " | " + greatestDecrease);
+console.log("Greatest Decrease in Profits/Losses: " + greatestDecreaseMonth + " ($" + greatestDecrease + ")");
