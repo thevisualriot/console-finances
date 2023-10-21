@@ -54,7 +54,7 @@ For loops were utilized to iterate through the data array, performing operations
 If statements were employed to compare array values and retrieve corresponding data from another column.
 
 #### Math
-Math methods, specifically Math.min() and Math.max(), were used to find the smallest and largest values in an array.
+Math methods, specifically Math.min() and Math.max(), were used to find the smallest and largest values in an array. 
 
 
 ## 📜 License
